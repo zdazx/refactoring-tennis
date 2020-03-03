@@ -19,12 +19,7 @@ public class TennisGame1 implements TennisGame {
         StringBuilder score = new StringBuilder();
         int tempScore;
         if (m_score1 == m_score2) {
-            if (m_score1 < 3) {
-                score.append(getMidScore(m_score1));
-                score.append("-All");
-            } else {
-                score = new StringBuilder("Deuce");
-            }
+            score = getScoreWhenTwoScoreIsEqual();
         } else if (m_score1 >= 4 || m_score2 >= 4) {
             int minusResult = m_score1 - m_score2;
             if (minusResult == 1) score = new StringBuilder("Advantage player1");
@@ -46,6 +41,17 @@ public class TennisGame1 implements TennisGame {
             }
         }
         return score.toString();
+    }
+
+    private StringBuilder getScoreWhenTwoScoreIsEqual() {
+        StringBuilder score = new StringBuilder();
+        if (m_score1 < 3) {
+            score.append(getMidScore(m_score1));
+            score.append("-All");
+        } else {
+            score = new StringBuilder("Deuce");
+        }
+        return score;
     }
 
     private String getMidScore(int value) {
