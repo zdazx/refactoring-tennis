@@ -21,11 +21,7 @@ public class TennisGame1 implements TennisGame {
         if (m_score1 == m_score2) {
             score = getScoreWhenTwoScoreIsEqual();
         } else if (m_score1 >= 4 || m_score2 >= 4) {
-            int minusResult = m_score1 - m_score2;
-            if (minusResult == 1) score = new StringBuilder("Advantage player1");
-            else if (minusResult == -1) score = new StringBuilder("Advantage player2");
-            else if (minusResult >= 2) score = new StringBuilder("Win for player1");
-            else score = new StringBuilder("Win for player2");
+            score = getScoreAdvantage();
         } else {
             for (int i = 1; i < 3; i++) {
                 if (i == 1) tempScore = m_score1;
@@ -41,6 +37,16 @@ public class TennisGame1 implements TennisGame {
             }
         }
         return score.toString();
+    }
+
+    private StringBuilder getScoreAdvantage() {
+        StringBuilder score;
+        int minusResult = m_score1 - m_score2;
+        if (minusResult == 1) score = new StringBuilder("Advantage player1");
+        else if (minusResult == -1) score = new StringBuilder("Advantage player2");
+        else if (minusResult >= 2) score = new StringBuilder("Win for player1");
+        else score = new StringBuilder("Win for player2");
+        return score;
     }
 
     private StringBuilder getScoreWhenTwoScoreIsEqual() {
