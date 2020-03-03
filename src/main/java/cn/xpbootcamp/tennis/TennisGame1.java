@@ -41,7 +41,7 @@ public class TennisGame1 implements TennisGame {
             }
             if (tempScore < 3) {
                 score.append(getMidScore(tempScore));
-            } else if (tempScore == 3){
+            } else if (tempScore == 3) {
                 score.append("Forty");
             }
         }
@@ -59,13 +59,11 @@ public class TennisGame1 implements TennisGame {
     }
 
     private StringBuilder getScoreWhenTwoScoreIsEqual() {
-        StringBuilder score = new StringBuilder();
-        if (m_score1 < 3) {
-            score.append(getMidScore(m_score1));
-            score.append("-All");
-        } else {
-            score = new StringBuilder("Deuce");
+        if (m_score1 >= 3) {
+            return new StringBuilder("Deuce");
         }
+        StringBuilder score = new StringBuilder();
+        score.append(getMidScore(m_score1)).append("-All");
         return score;
     }
 
