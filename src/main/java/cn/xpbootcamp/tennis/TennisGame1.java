@@ -1,5 +1,8 @@
 package cn.xpbootcamp.tennis;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public class TennisGame1 implements TennisGame {
 
     private int m_score1 = 0;
@@ -67,18 +70,11 @@ public class TennisGame1 implements TennisGame {
     }
 
     private String getMidScore(int value) {
-        StringBuilder score = new StringBuilder();
-        switch (value) {
-            case 0:
-                score = new StringBuilder("Love");
-                break;
-            case 1:
-                score = new StringBuilder("Fifteen");
-                break;
-            case 2:
-                score = new StringBuilder("Thirty");
-                break;
-        }
-        return score.toString();
+        Map<Integer, String> result = new HashMap<Integer, String>() {{
+            put(0, "Love");
+            put(1, "Fifteen");
+            put(2, "Thirty");
+        }};
+        return result.get(value);
     }
 }
