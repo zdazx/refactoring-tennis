@@ -23,20 +23,27 @@ public class TennisGame1 implements TennisGame {
         } else if (m_score1 >= 4 || m_score2 >= 4) {
             score = getScoreAdvantage();
         } else {
-            for (int i = 1; i < 3; i++) {
-                if (i == 1) tempScore = m_score1;
-                else {
-                    score.append("-");
-                    tempScore = m_score2;
-                }
-                if (tempScore < 3) {
-                    score.append(getMidScore(tempScore));
-                } else if (tempScore == 3){
-                    score.append("Forty");
-                }
-            }
+            score = getScoreWhenLessThan4();
         }
         return score.toString();
+    }
+
+    private StringBuilder getScoreWhenLessThan4() {
+        StringBuilder score = new StringBuilder();
+        int tempScore;
+        for (int i = 1; i < 3; i++) {
+            if (i == 1) tempScore = m_score1;
+            else {
+                score.append("-");
+                tempScore = m_score2;
+            }
+            if (tempScore < 3) {
+                score.append(getMidScore(tempScore));
+            } else if (tempScore == 3){
+                score.append("Forty");
+            }
+        }
+        return score;
     }
 
     private StringBuilder getScoreAdvantage() {
