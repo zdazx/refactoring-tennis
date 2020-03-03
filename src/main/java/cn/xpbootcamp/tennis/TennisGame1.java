@@ -19,20 +19,11 @@ public class TennisGame1 implements TennisGame {
         StringBuilder score = new StringBuilder();
         int tempScore;
         if (m_score1 == m_score2) {
-            switch (m_score1) {
-                case 0:
-                    score = new StringBuilder("Love-All");
-                    break;
-                case 1:
-                    score = new StringBuilder("Fifteen-All");
-                    break;
-                case 2:
-                    score = new StringBuilder("Thirty-All");
-                    break;
-                default:
-                    score = new StringBuilder("Deuce");
-                    break;
-
+            if (m_score1 < 3) {
+                score.append(getMidScore(m_score1));
+                score.append("-All");
+            } else {
+                score = new StringBuilder("Deuce");
             }
         } else if (m_score1 >= 4 || m_score2 >= 4) {
             int minusResult = m_score1 - m_score2;
@@ -47,21 +38,28 @@ public class TennisGame1 implements TennisGame {
                     score.append("-");
                     tempScore = m_score2;
                 }
-                switch (tempScore) {
-                    case 0:
-                        score.append("Love");
-                        break;
-                    case 1:
-                        score.append("Fifteen");
-                        break;
-                    case 2:
-                        score.append("Thirty");
-                        break;
-                    case 3:
-                        score.append("Forty");
-                        break;
+                if (tempScore < 3) {
+                    score.append(getMidScore(tempScore));
+                } else if (tempScore == 3){
+                    score.append("Forty");
                 }
             }
+        }
+        return score.toString();
+    }
+
+    private String getMidScore(int value) {
+        StringBuilder score = new StringBuilder();
+        switch (value) {
+            case 0:
+                score = new StringBuilder("Love");
+                break;
+            case 1:
+                score = new StringBuilder("Fifteen");
+                break;
+            case 2:
+                score = new StringBuilder("Thirty");
+                break;
         }
         return score.toString();
     }
