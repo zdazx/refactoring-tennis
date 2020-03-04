@@ -13,60 +13,31 @@ public class TennisGame2 implements TennisGame {
     public String getScore() {
         String score = "";
         if (P1point == P2point && P1point < 4) {
-            if (P1point == 0)
-                score = "Love";
-            if (P1point == 1)
-                score = "Fifteen";
-            if (P1point == 2)
-                score = "Thirty";
+            score = getPoint(P1point);
             score += "-All";
         }
         if (P1point == P2point && P1point >= 3)
             score = "Deuce";
 
         if (P1point > 0 && P2point == 0) {
-            if (P1point == 1)
-                P1res = "Fifteen";
-            if (P1point == 2)
-                P1res = "Thirty";
-            if (P1point == 3)
-                P1res = "Forty";
-
+            P1res = getPoint(P1point);
             P2res = "Love";
             score = P1res + "-" + P2res;
         }
         if (P2point > 0 && P1point == 0) {
-            if (P2point == 1)
-                P2res = "Fifteen";
-            if (P2point == 2)
-                P2res = "Thirty";
-            if (P2point == 3)
-                P2res = "Forty";
-
             P1res = "Love";
+            P2res = getPoint(P2point);
             score = P1res + "-" + P2res;
         }
 
         if (P1point > P2point && P1point < 4) {
-            if (P1point == 2)
-                P1res = "Thirty";
-            if (P1point == 3)
-                P1res = "Forty";
-            if (P2point == 1)
-                P2res = "Fifteen";
-            if (P2point == 2)
-                P2res = "Thirty";
+            P1res = getPoint(P1point);
+            P2res = getPoint(P2point);
             score = P1res + "-" + P2res;
         }
         if (P2point > P1point && P2point < 4) {
-            if (P2point == 2)
-                P2res = "Thirty";
-            if (P2point == 3)
-                P2res = "Forty";
-            if (P1point == 1)
-                P1res = "Fifteen";
-            if (P1point == 2)
-                P1res = "Thirty";
+            P1res = getPoint(P1point);
+            P2res = getPoint(P2point);
             score = P1res + "-" + P2res;
         }
 
@@ -85,6 +56,18 @@ public class TennisGame2 implements TennisGame {
             score = "Win for player2";
         }
         return score;
+    }
+
+    public String getPoint(int point) {
+        if (point == 0)
+            return "Love";
+        if (point == 1)
+            return "Fifteen";
+        if (point == 2)
+            return "Thirty";
+        if (point == 3)
+            return "Forty";
+        return "";
     }
 
     public void P1Score() {
